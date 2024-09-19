@@ -7,7 +7,7 @@
 - Mostrar la lista de los libros ordenas de acuerdo al criterio seleccionado.
 
 ### Selección de Algoritmo
-Para este proyecto, se decidió escoger el algoritmo de **Bubble Sort** ya que es un método de ordenamiento fácil entender
+Para este proyecto, se decidió escoger el algoritmo de **Bubble Sort** ya que es un método de ordenamiento fácil de entender.
 Así mismo, es fácil lograrlo adaptar de acuerdo a algún criterio de ordenamiento, siendo un ejemplo el lograr permitir al usuario que lo ordene por calificación o precio de manera ascendente o descendente, todo a selección del usuario.
 
 ### Análisis de complejidad
