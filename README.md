@@ -21,3 +21,29 @@ La complegidad del programa se puede representar de la siguiente manera:
 2. En la parte de la impresión de los libros ordenados, se tiene una complejidad de O(n) debido al recorrido sobre la lista ordenada.
 
 Una vez esto, la complejidad del programa está determinada por el algoritmo de ordenamiento utlizado, en este caso sería de O(n^2) debido al algoritmo de **Bubble Sort**.
+
+## Avance 2
+### Funcionalidades:
+- Ordena libros por calificacion.
+- Ordena libros por precio.
+- Permite buscar un libro por titulo.
+- Muestra todos los libros.
+- Cargar informacion de libros a partir de un archivo .txt
+
+### Seleccion de algoritmo:
+Para este segundo avance se decidio la utilizacion de un Arbol AVL gracias a su capacidad de mantener datos balanceados, y mejorando el tiempo de busqueda, insercion o eleminiacion comparandolo ocn un arreglo (la estructura de datos presentada en el avance 1). El uso de AVL es de gran utilidad debido a la necesidad de realizar multiples busquedas por titulo.
+
+### Mecanismo para lectura de archivos:
+Para este segundo avance, se decidio trabajar con un archivo .txt, debido a su facil comprension y uso, haciendo que las personas puedan agregar mas libros a su conveniencia. Es importante señalar la estructura del archivo como : titulo,calificacion,precio.
+
+### Analisis de complejidad:
+#### 1. Analisis de complejidad para **AVL TREE:**
+- **Peor caso O(log(n))**: Este se considera el peor de los casos cuando el arbol se encuentra desbalanceado, implicando la realizacion de rotaciones. Este caso aplica para la insersion, eliminacion y busqueda.
+
+- **Mejor caso O(log(n))**: Este se considera el mejor caso cuando el arbol se encuentra balanceado. Este caso aplica para la insresion, eliminacion y busqueda.
+
+#### 2. Analisis de complejidad para la carga de datos:
+La lectura y carga de archivos tiene una complejidad de O(n), ya que se procesa cada line del archivo para insertar los libros en los nodos del Arbol AVL.
+
+### 3. Analisis de complejidad del programa:
+Una vez contando con los analisis de complejidad de los casos de nuestro programa, se sabe que la complejidad de este esta determinada por el algoritmo de mas alta complejidad, siendo el AVL Tree, es por ello que la complejidad completa del programa es O(log(n)).
