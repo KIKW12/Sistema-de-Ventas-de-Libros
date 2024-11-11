@@ -47,3 +47,7 @@ La lectura y carga de archivos tiene una complejidad de O(n), ya que se procesa 
 
 ### 3. Analisis de complejidad del programa:
 Una vez contando con los analisis de complejidad de los casos de nuestro programa, se sabe que la complejidad de este esta determinada por el algoritmo de mas alta complejidad, siendo el AVL Tree, es por ello que la complejidad completa del programa es O(log(n)).
+
+## Avance 3
+### Funcionalidades:
+En este avance se implemetó una función que permite al usuario obtener una lista en formato .txt de los libros de acuerdo al último criterio de ordenamiento seleccionado por él.

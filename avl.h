@@ -114,37 +114,47 @@ private:
     * @return NodoAVL*: el nuevo nodo raíz del subárbol balanceado
     */
     NodoAVL* insertar(NodoAVL* nodo, const Libro& libro) {
-        if (nodo == nullptr)
-            return new NodoAVL(libro);
+    if (nodo == nullptr)
+        return new NodoAVL(libro);
 
-        // Inserción basada en el criterio principal (calificación o precio)
-        if (criterioPrincipal == "calificacion") {
-            if (libro.getCalificacion() < nodo->libro.getCalificacion())
-                nodo->izquierda = insertar(nodo->izquierda, libro);
-            else if (libro.getCalificacion() > nodo->libro.getCalificacion())
-                nodo->derecha = insertar(nodo->derecha, libro);
-            else
-                return nodo;
-        } else { // precio
-            if (libro.getPrecio() < nodo->libro.getPrecio())
-                nodo->izquierda = insertar(nodo->izquierda, libro);
-            else if (libro.getPrecio() > nodo->libro.getPrecio())
-                nodo->derecha = insertar(nodo->derecha, libro);
-            else
-                return nodo;
-        }
-
-        // Actualiza la altura del nodo
-        nodo->altura = 1 + max(altura(nodo->izquierda), altura(nodo->derecha));
-
-        // Calcula el balance del nodo para determinar si se necesita rotación
-        int balance = getBalance(nodo);
-
-        // Casos de rotación (sin cambios)
-        // ...
-
-        return nodo;
+    if (criterioPrincipal == "calificacion") {
+        if (libro.getCalificacion() < nodo->libro.getCalificacion())
+            nodo->izquierda = insertar(nodo->izquierda, libro);
+        else if (libro.getCalificacion() > nodo->libro.getCalificacion())
+            nodo->derecha = insertar(nodo->derecha, libro);
+        else
+            return nodo;
+    } else { // precio
+        if (libro.getPrecio() < nodo->libro.getPrecio())
+            nodo->izquierda = insertar(nodo->izquierda, libro);
+        else if (libro.getPrecio() > nodo->libro.getPrecio())
+            nodo->derecha = insertar(nodo->derecha, libro);
+        else
+            return nodo;
     }
+
+    nodo->altura = 1 + max(altura(nodo->izquierda), altura(nodo->derecha));
+    int balance = getBalance(nodo);
+
+    // Casos de rotación
+    if (balance > 1 && libro.getCalificacion() < nodo->izquierda->libro.getCalificacion())
+        return rotacionDerecha(nodo);
+
+    if (balance < -1 && libro.getCalificacion() > nodo->derecha->libro.getCalificacion())
+        return rotacionIzquierda(nodo);
+
+    if (balance > 1 && libro.getCalificacion() > nodo->izquierda->libro.getCalificacion()) {
+        nodo->izquierda = rotacionIzquierda(nodo->izquierda);
+        return rotacionDerecha(nodo);
+    }
+
+    if (balance < -1 && libro.getCalificacion() < nodo->derecha->libro.getCalificacion()) {
+        nodo->derecha = rotacionDerecha(nodo->derecha);
+        return rotacionIzquierda(nodo);
+    }
+
+    return nodo;
+}
 
     /**
     * Realiza un recorrido en orden en el árbol y almacena los 
@@ -154,12 +164,12 @@ private:
     * @param libros: referencia al vector donde se almacenarán los libros
     */
     void inOrder(NodoAVL* nodo, std::vector<Libro>& libros) const {
-        if (nodo != nullptr) {
-            inOrder(nodo->izquierda, libros);
-            libros.push_back(nodo->libro);
-            inOrder(nodo->derecha, libros);
-        }
+    if (nodo != nullptr) {
+        inOrder(nodo->izquierda, libros);
+        libros.push_back(nodo->libro);
+        inOrder(nodo->derecha, libros);
     }
+}
 
     /**
     * Busca un libro por su título en el árbol AVL.

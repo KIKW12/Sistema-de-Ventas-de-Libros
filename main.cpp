@@ -45,7 +45,8 @@ int main() {
         std::cout << "2. Ordenar por precio\n";
         std::cout << "3. Buscar libro por título\n";
         std::cout << "4. Mostrar todos los libros\n";
-        std::cout << "5. Salir\n";
+        std::cout << "5. Generar archivo con libros ordenados\n";
+        std::cout << "6. Salir\n";
         std::cout << "Seleccione una opción: ";
 
         // Validar entrada del usuario
@@ -92,11 +93,26 @@ int main() {
                 libreria.mostrarLibros();
                 break;
             case 5:
+                // Generar archivo con libros ordenados
+                {
+                    std::string nombreArchivo;
+                    std::cout << "Ingrese el nombre del archivo: ";
+                    limpiarBuffer();
+                    std::getline(std::cin, nombreArchivo);
+                    try {
+                        libreria.generarArchivoLibrosOrdenados(nombreArchivo);
+                        std::cout << "Archivo generado exitosamente.\n";
+                    } catch (const std::runtime_error& e) {
+                        std::cerr << "Error al generar el archivo: " << e.what() << std::endl;
+                    }
+                }
+                break;
+            case 6:
                 std::cout << "Haz Salido\n";
                 break;
             default:
                 std::cout << "Opción no válida. Por favor, intente de nuevo.\n";
         }
-    } while (opcion != 5);
+    } while (opcion != 6);
     return 0;
 }

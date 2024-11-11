@@ -4,27 +4,6 @@ El señor de los anillos,4.8,22.99
 Don Quijote de la Mancha,4.3,18.75
 Orgullo y prejuicio,4.4,11.99
 Crimen y castigo,4.6,14.50
-Matar a un ruiseñor,4.7,13.25
 En busca del tiempo perdido,4.2,24.99
 Ulises,4.1,16.50
 Lolita,4.0,12.99
-El gran Gatsby,4.5,11.75
-Madame Bovary,4.2,13.99
-Guerra y paz,4.6,26.50
-Las uvas de la ira,4.3,15.25
-El retrato de Dorian Gray,4.4,12.75
-Anna Karenina,4.5,19.99
-El principito,4.8,10.50
-Fahrenheit 451,4.6,13.75
-Moby Dick,4.2,17.99
-Drácula,4.3,14.25
-Jane Eyre,4.4,12.99
-Los miserables,4.7,23.50
-El nombre de la rosa,4.5,16.75
-La metamorfosis,4.3,11.25
-El guardián entre el centeno,4.4,13.99
-Rayuela,4.1,15.50
-El amor en los tiempos del cólera,4.6,18.25
-La sombra del viento,4.7,14.99
-El perfume,4.2,12.75
-Los pilares de la Tierra,4.8,25.99

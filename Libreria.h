@@ -34,26 +34,35 @@ public:
     * @param nombreArchivo: nombre del archivo desde donde se cargarán los libros
     * @throws std::runtime_error si el archivo no se puede abrir
     */
-    void cargarLibrosDesdeArchivo(const std::string& nombreArchivo) {
-        std::ifstream archivo(nombreArchivo);
-        if (!archivo) {
-            throw std::runtime_error("No se pudo abrir el archivo: " + nombreArchivo);
-        }
+void cargarLibrosDesdeArchivo(const std::string& nombreArchivo) {
+    std::ifstream archivo(nombreArchivo);
+    if (!archivo) {
+        throw std::runtime_error("No se pudo abrir el archivo: " + nombreArchivo);
+    }
 
-        std::string linea;
-        while (std::getline(archivo, linea)) {
-            std::istringstream iss(linea);
-            std::string titulo;
-            float calificacion, precio;
+    std::string linea;
+    int contador = 0;
+    while (std::getline(archivo, linea)) {
+        std::istringstream iss(linea);
+        std::string titulo;
+        float calificacion, precio;
 
-            if (std::getline(iss, titulo, ',') && 
-                iss >> calificacion && 
-                iss.ignore() && 
-                iss >> precio) {
-                arbol.insertar(Libro(titulo, calificacion, precio));
-            }
+        if (std::getline(iss, titulo, ',') && 
+            iss >> calificacion && 
+            iss.ignore() && 
+            iss >> precio) {
+            arbol.insertar(Libro(titulo, calificacion, precio));
+            contador++;
+            std::cout << "Libro insertado: " << titulo << std::endl; // Mensaje de depuración
+        } else {
+            std::cerr << "Error al leer la línea: " << linea << std::endl;
         }
     }
+
+    std::cout << "Total de libros leídos: " << contador << std::endl;
+}
+
+    
 
     /**
     * Método para cambiar el criterio de ordenación del árbol a "calificación".
@@ -100,6 +109,27 @@ public:
             std::cout << "Calificacion: " << libro.getCalificacion() << std::endl;
             std::cout << "Precio: $" << libro.getPrecio() << std::endl;
             std::cout << std::endl;
+        }
+    }
+
+    /**
+    * Método para generar un archivo .txt con todos los libros ordenados
+    * según el criterio seleccionado por el usuario.
+    *
+    * @param nombreArchivo: nombre del archivo donde se guardarán los libros
+    * @throws std::runtime_error si el archivo no se puede abrir
+    */
+    void generarArchivoLibrosOrdenados(const std::string& nombreArchivo) const {
+        std::ofstream archivo(nombreArchivo);
+        if (!archivo) {
+            throw std::runtime_error("No se pudo abrir el archivo: " + nombreArchivo);
+        }
+
+        std::vector<Libro> libros = arbol.obtenerLibrosOrdenados();
+        for (const auto& libro : libros) {
+            archivo << libro.getTitulo() << "," 
+                    << libro.getCalificacion() << "," 
+                    << libro.getPrecio() << "\n";
         }
     }
 };
