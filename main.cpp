@@ -1,9 +1,3 @@
-/**
- * Proyecto Sistema de venta de libros
- * Juan Enrique Ayala Zapata
- * A01711235
- */
-
 #include <iostream>
 #include <stdexcept>
 #include <limits>
@@ -46,7 +40,8 @@ int main() {
         std::cout << "3. Buscar libro por título\n";
         std::cout << "4. Mostrar todos los libros\n";
         std::cout << "5. Generar archivo con libros ordenados\n";
-        std::cout << "6. Salir\n";
+        std::cout << "6. Agregar un nuevo libro\n"; // Nueva opción
+        std::cout << "7. Salir\n";
         std::cout << "Seleccione una opción: ";
 
         // Validar entrada del usuario
@@ -81,7 +76,7 @@ int main() {
                         std::cout << "Libro encontrado:\n";
                         std::cout << "Título: " << libro.getTitulo() << "\n";
                         std::cout << "Calificación: " << libro.getCalificacion() 
-                        << "\n";
+                                  << "\n";
                         std::cout << "Precio: $" << libro.getPrecio() << "\n";
                     } catch (const std::runtime_error& e) {
                         std::cout << e.what() << std::endl;
@@ -108,11 +103,16 @@ int main() {
                 }
                 break;
             case 6:
-                std::cout << "Haz Salido\n";
+                // Agregar un nuevo libro
+                std::cout << "Agregar un nuevo libro:\n";
+                libreria.agregarLibroInteractivo();
+                break;
+            case 7:
+                std::cout << "Haz salido\n";
                 break;
             default:
                 std::cout << "Opción no válida. Por favor, intente de nuevo.\n";
         }
-    } while (opcion != 6);
+    } while (opcion != 7);
     return 0;
 }

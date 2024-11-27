@@ -1,0 +1,10 @@
+Orgullo y prejuicio,4.4,11.99
+1984,4.7,12.5
+Lolita,4,12.99
+Crimen y castigo,4.6,14.5
+Cien años de soledad,4.5,15.99
+Ulises,4.1,16.5
+Don Quijote de la Mancha,4.3,18.75
+El señor de los anillos,4.8,22.99
+En busca del tiempo perdido,4.2,24.99
+El libro de la selva,8,25

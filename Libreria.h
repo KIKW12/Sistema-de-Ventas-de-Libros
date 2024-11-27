@@ -1,9 +1,3 @@
-/**
- * Proyecto Sistema de venta de libros
- * Juan Enrique Ayala Zapata
- * A01711235
- */
-
 #ifndef LIBRERIA_H
 #define LIBRERIA_H
 
@@ -11,6 +5,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <limits>
 #include "libro.h"
 #include "avl.h"
 
@@ -34,35 +29,33 @@ public:
     * @param nombreArchivo: nombre del archivo desde donde se cargarán los libros
     * @throws std::runtime_error si el archivo no se puede abrir
     */
-void cargarLibrosDesdeArchivo(const std::string& nombreArchivo) {
-    std::ifstream archivo(nombreArchivo);
-    if (!archivo) {
-        throw std::runtime_error("No se pudo abrir el archivo: " + nombreArchivo);
-    }
-
-    std::string linea;
-    int contador = 0;
-    while (std::getline(archivo, linea)) {
-        std::istringstream iss(linea);
-        std::string titulo;
-        float calificacion, precio;
-
-        if (std::getline(iss, titulo, ',') && 
-            iss >> calificacion && 
-            iss.ignore() && 
-            iss >> precio) {
-            arbol.insertar(Libro(titulo, calificacion, precio));
-            contador++;
-            std::cout << "Libro insertado: " << titulo << std::endl; // Mensaje de depuración
-        } else {
-            std::cerr << "Error al leer la línea: " << linea << std::endl;
+    void cargarLibrosDesdeArchivo(const std::string& nombreArchivo) {
+        std::ifstream archivo(nombreArchivo);
+        if (!archivo) {
+            throw std::runtime_error("No se pudo abrir el archivo: " + nombreArchivo);
         }
+
+        std::string linea;
+        int contador = 0;
+        while (std::getline(archivo, linea)) {
+            std::istringstream iss(linea);
+            std::string titulo;
+            float calificacion, precio;
+
+            if (std::getline(iss, titulo, ',') && 
+                iss >> calificacion && 
+                iss.ignore() && 
+                iss >> precio) {
+                arbol.insertar(Libro(titulo, calificacion, precio));
+                contador++;
+                std::cout << "Libro insertado: " << titulo << std::endl; // Mensaje de depuración
+            } else {
+                std::cerr << "Error al leer la línea: " << linea << std::endl;
+            }
+        }
+
+        std::cout << "Total de libros leídos: " << contador << std::endl;
     }
-
-    std::cout << "Total de libros leídos: " << contador << std::endl;
-}
-
-    
 
     /**
     * Método para cambiar el criterio de ordenación del árbol a "calificación".
@@ -131,6 +124,36 @@ void cargarLibrosDesdeArchivo(const std::string& nombreArchivo) {
                     << libro.getCalificacion() << "," 
                     << libro.getPrecio() << "\n";
         }
+    }
+
+    /**
+    * Método para agregar un libro ingresado por el usuario.
+    * Solicita título, calificación y precio desde la consola y lo inserta en el árbol AVL.
+    */
+    void agregarLibroInteractivo() {
+        std::string titulo;
+        float calificacion, precio;
+
+        std::cout << "Ingrese el título del libro: ";
+        std::cin.ignore(); // Ignorar el salto de línea previo
+        std::getline(std::cin, titulo);
+
+        std::cout << "Ingrese la calificación del libro (0.0 - 10.0): ";
+        while (!(std::cin >> calificacion) || calificacion < 0.0 || calificacion > 10.0) {
+            std::cout << "Calificación inválida. Intente de nuevo: ";
+            std::cin.clear(); // Limpiar el estado de error
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignorar entrada no válida
+        }
+
+        std::cout << "Ingrese el precio del libro: ";
+        while (!(std::cin >> precio) || precio < 0.0) {
+            std::cout << "Precio inválido. Intente de nuevo: ";
+            std::cin.clear(); // Limpiar el estado de error
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Ignorar entrada no válida
+        }
+
+        arbol.insertar(Libro(titulo, calificacion, precio));
+        std::cout << "El libro \"" << titulo << "\" ha sido agregado con éxito." << std::endl;
     }
 };
 
