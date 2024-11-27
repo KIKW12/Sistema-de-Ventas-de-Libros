@@ -7,20 +7,19 @@
 - Mostrar la lista de los libros ordenas de acuerdo al criterio seleccionado.
 
 ### Selección de Algoritmo
-Para este proyecto, se decidió escoger el algoritmo de **Bubble Sort** ya que es un método de ordenamiento fácil de entender.
-Así mismo, es fácil lograrlo adaptar de acuerdo a algún criterio de ordenamiento, siendo un ejemplo el lograr permitir al usuario que lo ordene por calificación o precio de manera ascendente o descendente, todo a selección del usuario.
+Para este proyecto se ha decidido utilizar el algoritmo **std::sort** propio del lenguaje C++, ya que se combina con el uso del arbol AVL para el ordenamiento de nuestros libros. Este métod de ordenamiento preestablecido trabaja con una variante de **QuickSort** llamado **IntroSort**, combinando QuickSort, HeapSort e InsertionSort.
 
 ### Análisis de complejidad
 #### 1. Análisis de complejidad para **Bubble Sort:**
-- **Peor caso (O(n²))**: Este se considera el peor de los casos cuando todos los libros están desordenados, haciendo que el algoritmo realice n-1 pasadas sobre la lista, realizando compraciones entre todos los elementos.
-- **Mejor de los casos (O(n)):** Este se considera el mejor de los casos ya cuando todos los elementos, en este caso, los libros ya se encuentran ordenados, haciendo que el algoritmo solo de una pasada por toda la lisa.
+- **Peor caso (O(n log n))**: Si bien el peor caso originalmente sería O(n²) debido a QuickSort, pero el método **IntroSort** cambia a HeapSort cuando detecta particiones desbalanceadas. Aunque los libros se encuentren completamente desorderdenados, el algoritmo mantiene el mismo tiempo haciendo cambios y reorganizando los datos en cada paso.
+- **Mejor de los casos (O(n log n)):** Este se considera el mejor de los casos ya cuando todos los elementos, en este caso, los libros ya se encuentran ordenados o casi ordenados, haciendo particiones, gracias a QuickSort se logra mantener el tiempo..
 
 #### 2. Análisis de complejidad del programa:
 La complegidad del programa se puede representar de la siguiente manera:
-1. En la parte de ordenamientos de libro, se tiene una complegidad de O(n²) debido al ordenamiento de los libros.
+1. En la parte de ordenamientos, se tiene una complegidad de O(n log n) debido al ordenamiento de los libros.
 2. En la parte de la impresión de los libros ordenados, se tiene una complejidad de O(n) debido al recorrido sobre la lista ordenada.
 
-Una vez esto, la complejidad del programa está determinada por el algoritmo de ordenamiento utlizado, en este caso sería de O(n^2) debido al algoritmo de **Bubble Sort**.
+Una vez esto, la complejidad del programa está determinada por el algoritmo de ordenamiento utlizado, en este caso sería de O(n log n) debido al algoritmo de **std::sort**. que viene preestablecido en C++.
 
 ## Avance 2
 ### Funcionalidades:
@@ -51,3 +50,6 @@ Una vez contando con los analisis de complejidad de los casos de nuestro program
 ## Avance 3
 ### Funcionalidades:
 En este avance se implemetó una función que permite al usuario obtener una lista en formato .txt de los libros de acuerdo al último criterio de ordenamiento seleccionado por él.
+
+## Correciones 3
+Se implementa la función para que el usuario pueda agregar nuevos libros, y se haga todo el proceso de ordenamiento y almacenamiento en un nuevo archivo .txt.
