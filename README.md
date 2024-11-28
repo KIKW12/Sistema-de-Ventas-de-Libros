@@ -53,3 +53,6 @@ En este avance se implemetó una función que permite al usuario obtener una lis
 
 ## Correciones 3
 Se implementa la función para que el usuario pueda agregar nuevos libros, y se haga todo el proceso de ordenamiento y almacenamiento en un nuevo archivo .txt.
+
+## Referencias:
+[https://www.naukri.com/code360/library/internal-implementation-of-stdsort](https://www.naukri.com/code360/library/internal-implementation-of-stdsort)
