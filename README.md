@@ -3,6 +3,7 @@
 [![C++](https://img.shields.io/badge/C++-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)](https://isocpp.org/)
 [![Data Structures](https://img.shields.io/badge/Data_Structures-AVL_Tree-brightgreen?style=for-the-badge)](https://en.wikipedia.org/wiki/AVL_tree)
 [![Algorithms](https://img.shields.io/badge/Algorithms-O(log_n)-blue?style=for-the-badge)](https://en.wikipedia.org/wiki/Time_complexity)
+[![Ask DeepWiki](https://img.shields.io/badge/Ask-DeepWiki-9B59B6?style=for-the-badge&logo=wikipedia&logoColor=white)](https://deepwiki.com/KIKW12/Sistema-de-Ventas-de-Libros)
 
 > **A sophisticated C++ application demonstrating advanced data structures, algorithm implementation, and software engineering principles through a real-world book inventory management system.**
 
